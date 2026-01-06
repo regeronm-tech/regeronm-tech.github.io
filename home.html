@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['logged_in'])) {
-  header("Location: login.html"); // ถ้ายังไม่ Login ให้ไปหน้า Login
-  exit();
-}
-?>
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -47,7 +39,7 @@ if (!isset($_SESSION['logged_in'])) {
 
     <div class="hero_area">
         <div class="bg-box">
-            <img src="images/ratatouille2.png" alt="">
+            <img src="ratatouille2.png" alt="">
         </div>
         <!-- header section strats -->
         <header class="header_section">
@@ -537,4 +529,5 @@ if (!isset($_SESSION['logged_in'])) {
 
 
 </html>
+
 
