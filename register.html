@@ -1,51 +1,3 @@
-<?php
-session_start();
-// ถ้า Logged-in แล้ว ไม่ให้เข้าหน้านี้
-if (isset($_SESSION['logged_in'])) {
-    header("Location: index.php");
-    exit();
-}
-
-include 'connect.php';
-
-$register_success = ''; // เก็บข้อความสำเร็จ
-$register_error = '';   // เก็บข้อความ error
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $fullname = trim($_POST['fullname']);
-    $email = trim($_POST['email']);
-    $username = trim($_POST['username']);
-    $password = $_POST['password'];
-    $confirm = $_POST['confirm'];
-
-    if ($password !== $confirm) {
-        $register_error = 'Passwords do not match!';
-    } else {
-        // ตรวจสอบ username/email ซ้ำ
-        $stmt = $conn->prepare("SELECT id FROM users WHERE username=? OR email=?");
-        $stmt->bind_param("ss", $username, $email);
-        $stmt->execute();
-        $stmt->store_result();
-
-        if ($stmt->num_rows > 0) {
-            $register_error = 'Username or Email already exists!';
-        } else {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            $stmt = $conn->prepare("INSERT INTO users (fullname,email,username,password) VALUES (?,?,?,?)");
-            $stmt->bind_param("ssss", $fullname, $email, $username, $hashed_password);
-
-            if ($stmt->execute()) {
-                $register_success = 'Your account has been created.';
-            } else {
-                $register_error = 'Something went wrong!';
-            }
-        }
-        $stmt->close();
-    }
-}
-$conn->close();
-?>
 <!DOCTYPE html>
 <html>
 
@@ -320,19 +272,6 @@ $conn->close();
     </script>
     <!-- End Google Map -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <?php if ($register_error): ?>
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: '<?php echo $register_error; ?>',
-                confirmButtonColor: '#ffb300',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    <?php endif; ?>
-
     <?php if ($register_success): ?>
         <script>
             Swal.fire({
@@ -368,4 +307,5 @@ $conn->close();
 
 
 </html>
+
 
