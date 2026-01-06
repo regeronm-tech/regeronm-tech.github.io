@@ -272,19 +272,6 @@
     </script>
     <!-- End Google Map -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <?php if ($register_success): ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Registered!',
-                text: '<?php echo $register_success; ?>',
-                confirmButtonColor: '#ffb300',
-                confirmButtonText: 'Login'
-            }).then(() => {
-                window.location = 'login.php';
-            });
-        </script>
-    <?php endif; ?>
 
     <script>
         document.querySelectorAll('.need-login').forEach(btn => {
@@ -307,5 +294,6 @@
 
 
 </html>
+
 
 
