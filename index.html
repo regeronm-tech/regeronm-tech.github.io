@@ -262,17 +262,6 @@
             });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <?php if ($login_error): ?>
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Login Failed',
-            text: '<?php echo $login_error; ?>',
-            confirmButtonColor: '#ffb300',
-            confirmButtonText: 'OK',
-        });
-    </script>
     <?php endif; ?>
 
 
@@ -281,4 +270,5 @@
 
 
 </html>
+
 
