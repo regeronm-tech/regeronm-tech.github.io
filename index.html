@@ -249,7 +249,6 @@
     <script>
         document.querySelectorAll('.need-login').forEach(btn => {
             btn.addEventListener('click', function (e) {
-                if (!sessionStorage.getItem("logged_in")) {
                     e.preventDefault();
                     Swal.fire({
                         icon: 'warning',
@@ -258,7 +257,6 @@
                         confirmButtonColor: '#ffb300',
                         confirmButtonText: 'OK'
                     });
-                }
             });
         });
     </script>
@@ -270,5 +268,6 @@
 
 
 </html>
+
 
 
