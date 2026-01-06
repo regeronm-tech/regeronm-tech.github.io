@@ -1,0 +1,413 @@
+<?php
+session_start();
+if (!isset($_SESSION['logged_in'])) {
+    header("Location: login.html"); // ถ้ายังไม่ Login ให้ไปหน้า Login
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="images/favicon.png" type="">
+
+    <title> Ratatouille </title>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- nice select  -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+        integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+        crossorigin="anonymous" />
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body class="sub_page">
+
+    <div class="hero_area">
+        <div class="bg-box">
+            <img src="images/hero-bg.jpg" alt="">
+        </div>
+        <!-- header section strats -->
+        <header class="header_section">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <a class="navbar-brand" href="index.php" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="images/logorat2.png" alt="Logo" style="height: 80px;">
+                        <span>
+                            Ratatouille
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class=""> </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav  mx-auto ">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="menu.php">Menu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.php">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="book.php">About Me</a>
+                            </li>
+                        </ul>
+                        <div class="user_option">
+                            <a href="order.php" class="order_online">
+                                Order Online
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- end header section -->
+    </div>
+
+    <!-- book section -->
+    <!-- book section -->
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>Book A Order</h2>
+            </div>
+            <div class="row">
+                <!-- ฟอร์มลูกค้า -->
+                <div class="col-md-6">
+                    <div class="form_container">
+                        <form id="orderForm">
+                            <div>
+                                <input type="text" class="form-control" placeholder="Your Name" required />
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Phone Number" required />
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Address" required />
+                            </div>
+
+                            <div>
+                                <p>Select Food Items:</p>
+                                <div class="food_items_container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                                    <div class="food_item" data-price="15"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/cwine.png" alt=""
+                                            style="width:60px; height:60px; margin-right:10px;">
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" class="food_checkbox" value="Pizza"> Coq au Vin -
+                                                15$
+                                            </label>
+                                            <input type="number" class="food_qty" min="1" value="1"
+                                                style="width:60px; margin-left:10px;" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="food_item" data-price="5"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/snail.png" alt=""
+                                            style="width:60px; height:60px; margin-right:10px;">
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" class="food_checkbox" value="Burger"> Escargots -
+                                                5$
+                                            </label>
+                                            <input type="number" class="food_qty" min="1" value="1"
+                                                style="width:60px; margin-left:10px;" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="food_item" data-price="20"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/beef.png" alt=""
+                                            style="width:60px; height:60px; margin-right:10px;">
+                                        <label>
+                                            <input type="checkbox" class="food_checkbox" value="Pasta"> Beef Bourguignon
+                                            -
+                                            20$
+                                        </label>
+                                        <input type="number" class="food_qty" min="1" value="1"
+                                            style="width:60px; margin-left:10px;" disabled>
+                                    </div>
+
+                                    <div class="food_item" data-price="10"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/Rat.png" alt=""
+                                            style="width:60px; height:60px; margin-right:10px;">
+                                        <label>
+                                            <input type="checkbox" class="food_checkbox" value="Salad"> Ratatouille -
+                                            10$
+                                        </label>
+                                        <input type="number" class="food_qty" min="1" value="1"
+                                            style="width:60px; margin-left:10px;" disabled>
+                                    </div>
+                                    <div class="food_item" data-price="5"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/pud.png" alt=""
+                                            style="width:60px; height:60px; margin-right:10px;">
+                                        <label>
+                                            <input type="checkbox" class="food_checkbox" value="Pasta"> Crème Brûlée -
+                                            5$
+                                        </label>
+                                        <input type="number" class="food_qty" min="1" value="1"
+                                            style="width:60px; margin-left:10px;" disabled>
+                                    </div>
+                                    <div class="food_item" data-price="8"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/soup.png" alt=""
+                                            style="width:60px; height:60px; margin-right:10px;">
+                                        <label>
+                                            <input type="checkbox" class="food_checkbox" value="Pasta"> Onion Soup -
+                                            8$
+                                        </label>
+                                        <input type="number" class="food_qty" min="1" value="1"
+                                            style="width:60px; margin-left:10px;" disabled>
+                                    </div>
+                                    <div class="food_item" data-price="3"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/salad.png" alt=""
+                                            style="width:60px; height:60px; margin-right:10px;">
+                                        <label>
+                                            <input type="checkbox" class="food_checkbox" value="Pasta"> Salade Niçoise -
+                                            3$
+                                        </label>
+                                        <input type="number" class="food_qty" min="1" value="1"
+                                            style="width:60px; margin-left:10px;" disabled>
+                                    </div>
+                                    <div class="food_item" data-price="7"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/applev3.png" alt=""
+                                            style="width:60px; height:60px; margin-right:10px;">
+                                        <label>
+                                            <input type="checkbox" class="food_checkbox" value="Pasta"> Tarte Tatin -
+                                            7$
+                                        </label>
+                                        <input type="number" class="food_qty" min="1" value="1"
+                                            style="width:60px; margin-left:10px;" disabled>
+                                    </div>
+                                    <div class="food_item" data-price="12"
+                                        style="flex: 0 0 45%; border: 1px solid #ddd; padding: 5px; display: flex; align-items: center;">
+                                        <img src="images/Cham.png" alt=""
+                                            style="width:20px; height:60px; margin-right:10px;">
+                                        <label>
+                                            <input type="checkbox" class="food_checkbox" value="Pasta"> Champagne -
+                                            12$
+                                        </label>
+                                        <input type="number" class="food_qty" min="1" value="1"
+                                            style="width:60px; margin-left:10px;" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top:10px;">
+                                <p>Total Price: <span id="totalPrice">0</span>$</p>
+                            </div>
+
+                            <div class="btn_box" style="margin-top:15px;">
+                                <button type="submit" id="orderBtn">Order Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- แผนที่ -->
+                <div class=" col-md-6">
+                    <div class="map_container">
+                        <div id="googleMap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- end book section -->
+    <!-- end book section -->
+
+    <!-- footer section -->
+    <footer class="footer_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-col">
+                    <div class="footer_contact">
+                        <h4>
+                            Contact Us
+                        </h4>
+                        <div class="contact_link_box">
+
+                            <div class="contact_item">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <span>Location</span>
+                            </div>
+
+
+                            <div class="contact_item">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <span>Call +01 1234567890</span>
+                            </div>
+
+
+                            <div class="contact_item">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <span>demo@gmail.com</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <div class="footer_detail">
+                        <a href="" class="footer-logo">
+                            Ratatouille
+                        </a>
+                        <p>
+                            Thank you for visiting our online ordering website.We hope you enjoy your experience and
+                            find the perfect
+                            dish to satisfy your taste!
+                        </p>
+                        <div class="footer_social">
+                            <a href="">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <h4>
+                        Opening Hours
+                    </h4>
+                    <p>
+                        Everyday
+                    </p>
+                    <p>
+                        10.00 Am -10.00 Pm
+                    </p>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>
+                    &copy; <span id="displayYear"></span> All Rights Reserved By
+                    <a href="https://html.design/">Free Html Templates</a><br><br>
+                    &copy; <span id="displayYear"></span> Distributed By
+                    <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section -->
+
+    <!-- jQery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!-- isotope js -->
+    <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+    <!-- nice select -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+    </script>
+    <!-- End Google Map -->
+    <script>
+        // จัดการเปิด/ปิดจำนวนและคำนวณราคารวม
+        const checkboxes = document.querySelectorAll('.food_checkbox');
+        const totalPriceEl = document.getElementById('totalPrice');
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateOrder);
+        });
+
+        function updateOrder() {
+            let total = 0;
+            document.querySelectorAll('.food_item').forEach(item => {
+                const checkbox = item.querySelector('.food_checkbox');
+                const qtyInput = item.querySelector('.food_qty');
+                const price = parseFloat(item.dataset.price);
+
+                if (checkbox.checked) {
+                    qtyInput.disabled = false;
+                    total += price * parseInt(qtyInput.value);
+                } else {
+                    qtyInput.disabled = true;
+                    qtyInput.value = 1;
+                }
+
+                // อัปเดตราคารวมเมื่อเปลี่ยนจำนวน
+                qtyInput.addEventListener('input', () => {
+                    updateOrder();
+                });
+            });
+            totalPriceEl.textContent = total;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const orderForm = document.getElementById('orderForm');
+
+        orderForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // ป้องกันฟอร์มรีเฟรชหน้า
+
+            // แสดง SweetAlert2 แทน alert
+            Swal.fire({
+                icon: 'success',            // ไอคอน success
+                title: 'Order Received!',   // หัวข้อ
+                text: 'Your order has been received successfully.', // ข้อความเพิ่มเติม
+                confirmButtonColor: '#28a745', // สีปุ่ม OK
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+</body>
+
+</html>
